@@ -68,7 +68,7 @@ module Erp::Areas
 
     # data for dataselect ajax
     def self.dataselect(keyword='', params={})
-      query = self.all
+      query = self.all.order('code')
 
       # filter by keyword
       if keyword.present?
@@ -81,7 +81,7 @@ module Erp::Areas
 				query = query.where(params[:parent_id] => params[:parent_value])
 			end
 
-      query = query.limit(8).map{|state| {value: state.id, text: state.name} }
+      query = query.limit(34).map{|state| {value: state.id, text: state.name} }
     end
 
     def archive
